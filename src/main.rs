@@ -14,6 +14,9 @@ use bevy::{
     DefaultPlugins,
 };
 
+use bevy_screen_diagnostics::ScreenDiagnosticsPlugin;
+use bevy_screen_diagnostics::ScreenFrameDiagnosticsPlugin;
+
 fn character_movement(
     mut characters: Query<(&mut Transform, &Sprite)>,
     input: Res<Input<KeyCode>>,
@@ -62,6 +65,8 @@ fn main() {
                     ..default()
                 }),
         )
+        .add_plugins(ScreenDiagnosticsPlugin::default())
+        .add_plugins(ScreenFrameDiagnosticsPlugin)
         .add_systems(Startup, setup)
         .add_systems(Update, character_movement)
         .run()
